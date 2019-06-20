@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
-import { NgxConditionalValidationComponent } from './ngx-conditional-validation.component';
 
 @NgModule({
-  declarations: [NgxConditionalValidationComponent],
+  declarations: [],
   imports: [
   ],
-  exports: [NgxConditionalValidationComponent]
+  exports: []
 })
 export class NgxConditionalValidationModule { }
