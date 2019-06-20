@@ -1,8 +1,34 @@
 {
   "name": "ngx-conditional-validation",
-  "version": "0.0.1",
+  "version": "8.0.0",
+  "description": "Angular 8: conditional validations..",
+  "author": {
+    "name": "FreeIntelligence",
+    "email": "free04381@gmail.com"
+  },
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nalv/ngx-conditional-validation.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nalv/ngx-conditional-validation/issues"
+  },
+  "homepage": "https://github.com/nalv/ngx-conditional-validation#readme",
+  "keywords": [
+    "angular",
+    "angular8",
+    "ng",
+    "ngx",
+    "conditional",
+    "universal",
+    "validation",
+    "validator"
+  ],
   "peerDependencies": {
-    "@angular/common": "^8.0.1",
-    "@angular/core": "^8.0.1"
+    "@angular/common": "^8.0.0",
+    "@angular/core": "^8.0.0"
+  },
+  "dependencies": {
   }
 }
