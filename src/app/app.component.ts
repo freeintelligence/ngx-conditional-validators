@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ngx-conditional-validation-app';
+
+  form: FormGroup = new FormGroup({
+    isRequired: new FormControl(0, [ Validators.required ]),
+    name: new FormControl(null, [ ]),
+  });
+
+  constructor() { }
+
 }
