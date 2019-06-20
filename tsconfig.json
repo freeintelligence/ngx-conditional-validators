@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-conditional-validation": [
+        "dist/ngx-conditional-validation"
+      ],
+      "ngx-conditional-validation/*": [
+        "dist/ngx-conditional-validation/*"
+      ]
+    }
   }
 }
