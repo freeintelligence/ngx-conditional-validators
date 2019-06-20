@@ -17,7 +17,9 @@ export class AppComponent {
 
   constructor() {
     this.form.controls.name.setValidators([
-      ConditionalValidators.custom(() => this.form.controls.isRequired.value === '1', [ Validators.required ], [ 'isRequired' ])
+      ConditionalValidators.custom(() => this.form.controls.isRequired.value === '1', [
+        Validators.required
+      ], [ 'isRequired' ])
     ]);
   }
 
