@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { ConditionalValidators } from 'ngx-conditional-validation';
@@ -12,7 +12,7 @@ export class AppComponent {
 
   form: FormGroup = new FormGroup({
     isRequired: new FormControl(0, [ Validators.required ]),
-    name: new FormControl(null, [ ]),
+    name: new FormControl(null),
   });
 
   constructor() {

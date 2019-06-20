@@ -22,6 +22,9 @@ export class ConditionalValidators {
     if (!(control.changeSubscriptions instanceof Array)) {
       control.changeSubscriptions = [ ];
     }
+    if (!(controls instanceof Array)) {
+      controls = [ ];
+    }
 
     for (const conditionControl of controls) {
       const realControl: AbstractControl = typeof conditionControl === 'string' ?
@@ -54,7 +57,7 @@ export class ConditionalValidators {
       this.cleanChangeSubscriptions(control);
       this.pushChangeSubscriptions(control, controls);
 
-      if (typeof state === 'function' && state()) {
+      if (typeof state === 'function' && state.call(control.parent)) {
         for (const validator of validators) {
           const errors = validator(control);
 
