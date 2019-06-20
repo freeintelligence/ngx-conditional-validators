@@ -39,6 +39,12 @@ export class ConditionalValidators {
     };
   }
 
+  /**
+   * Validation with condition equal to value
+   * @param conditions conditions like object (key is control name)
+   * @param validators validators array
+   * @param controls controls to detect changes in their values
+   */
   static equal(conditions: { [ key: string]: any }, validators: ValidatorFn[], controls?: (AbstractControl | string)[]): ValidatorFn {
     return (control: ExtraControl): { [ key: string]: any } | null => {
       if (!(controls instanceof Array)) {
