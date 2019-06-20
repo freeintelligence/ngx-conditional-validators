@@ -12,9 +12,13 @@ export class AppComponent {
 
   form: FormGroup = new FormGroup({
     isRequired: new FormControl(0, [ Validators.required ]),
-    name: new FormControl(null, [ ConditionalValidators({ isRequired: '1' }, [ Validators.required ]) ]),
+    name: new FormControl(null, [ ]),
   });
 
-  constructor() { }
+  constructor() {
+    this.form.controls.name.setValidators([
+      ConditionalValidators.custom(() => this.form.controls.isRequired.value === '1', [ Validators.required ], [ 'isRequired' ])
+    ]);
+  }
 
 }
