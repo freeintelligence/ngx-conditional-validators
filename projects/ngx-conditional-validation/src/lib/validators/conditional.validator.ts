@@ -6,8 +6,43 @@ interface ExtraControl extends AbstractControl {
 }
 
 // @dynamic
+/**
+ * Conditional validators
+ */
 export class ConditionalValidators {
 
+  /**
+   * Custom validation with condition
+   * @param state condition to set the validators
+   * @param validators validators array to set
+   * @param controls controls to detect changes in their values
+   */
+  static custom(
+    state: () => boolean,
+    validators: ValidatorFn[],
+    controls?: (AbstractControl | string)[]): ValidatorFn {
+    return (control: ExtraControl): { [ key: string]: any } | null => {
+      this.cleanChangeSubscriptions(control);
+      this.pushChangeSubscriptions(control, controls);
+
+      if (typeof state === 'function' && state.call(control.parent)) {
+        for (const validator of validators) {
+          const errors = validator(control);
+
+          if (errors !== null) {
+            return errors;
+          }
+        }
+      }
+
+      return null;
+    };
+  }
+
+  /**
+   * Clean subscriptions for changes in control value
+   * @param control controls array
+   */
   private static cleanChangeSubscriptions(control: ExtraControl) {
     if (!(control.changeSubscriptions instanceof Array)) {
       control.changeSubscriptions = [ ];
@@ -18,6 +53,11 @@ export class ConditionalValidators {
     }
   }
 
+  /**
+   * Subscribe to changes in the values of the controls to validate the main control
+   * @param control main control
+   * @param controls controls array
+   */
   private static pushChangeSubscriptions(control: ExtraControl, controls: (AbstractControl | string)[]) {
     if (!(control.changeSubscriptions instanceof Array)) {
       control.changeSubscriptions = [ ];
@@ -39,6 +79,11 @@ export class ConditionalValidators {
     }
   }
 
+  /**
+   * Get the control object from group parent
+   * @param name control name to get
+   * @param group group parent
+   */
   private static getControlByName(name: string, group: FormGroup): AbstractControl {
     for (const key in group.controls) {
       if (key === name) {
@@ -47,28 +92,6 @@ export class ConditionalValidators {
     }
 
     return null;
-  }
-
-  static custom(
-    state: () => boolean,
-    validators: ValidatorFn[],
-    controls?: (AbstractControl | string)[]): ValidatorFn {
-    return (control: ExtraControl): { [ key: string]: any } | null => {
-      this.cleanChangeSubscriptions(control);
-      this.pushChangeSubscriptions(control, controls);
-
-      if (typeof state === 'function' && state.call(control.parent)) {
-        for (const validator of validators) {
-          const errors = validator(control);
-
-          if (errors !== null) {
-            return errors;
-          }
-        }
-      }
-
-      return null;
-    };
   }
 
 }
